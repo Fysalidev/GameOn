@@ -14,7 +14,6 @@ const modalBtnClose = document.querySelectorAll(".close");
 
 // Pourquoi ???
 const formData = document.querySelectorAll(".formData");
-console.log(formData);
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
