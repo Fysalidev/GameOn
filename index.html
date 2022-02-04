@@ -59,26 +59,27 @@
             <div class="formData">
               <label>Prénom</label><br>
               <input class="text-control" type="text" id="first" name="first" minlength="2" required /><br>
-              <span class="firstErrorMessage"></span>
+              <span class="firstError"></span>
             </div>
             <div class="formData">
               <label>Nom</label><br>
               <input class="text-control" type="text" id="last" name="last" minlength="2" required /><br>
-              <span class="lastErrorMessage"></span>
+              <span class="lastError"></span>
             </div>
             <div class="formData">
               <label>E-mail</label><br>
               <input class="text-control" type="email" id="email" name="email" required /><br>
-              <span class="emailErrorMessage"></span>
+              <span class="emailError">Email invalide</span>
             </div>
             <div class="formData">
               <label>Date de naissance</label><br>
               <input class="text-control" type="date" id="birthdate" name="birthdate" required /><br>
-              <span class="dateErreurMessage"></span>
+              <span class="birthdateError">Date de naissance invalide</span>
             </div>
             <div class="formData">
               <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
               <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" required>
+              <span class="quantityError">Réponse obligatoire</span>
             </div>
             <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
             <div class="formData">
@@ -107,6 +108,7 @@
                 <span class="checkbox-icon"></span>
                 Portland</label>
             </div>
+            <span class="countError">Choisissez un tournois</span>
 
             <div class="formData">
               <input class="checkbox-input" type="checkbox" id="checkbox1" checked />
@@ -122,6 +124,7 @@
               </label>
               <br>
             </div>
+            <span class="conditionsError">Vous devez accepter les conditions d'utilisation</span>
             <input class="btn-submit" type="submit" class="button" value="C'est parti" />
           </form>
         </div>

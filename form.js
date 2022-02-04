@@ -1,75 +1,96 @@
 const form = document.getElementsByTagName("form")[0];
 
-let first = document.getElementById('first');
-let firstErrorMessage = document.querySelector('.firstErrorMessage');
+// Inputs Elements
 
-let last = document.getElementById('last');
-let lastErrorMessage = document.querySelector('.lastErrorMessage');
+const firstName = document.getElementById('first');
+const lastName = document.getElementById('last');
 
-let email = document.getElementById('email');
-let emailErrorMessage = document.querySelector('.emailErrorMessage');
-
-let date = document.getElementById('birthdate');
-console.log(date);
-let dateErrorMessage = document.querySelector('.dateErreurMessage');
-console.log(dateErrorMessage);
+// Error Message Elements
+const firstNameError = document.querySelector('.firstError');
+const lastNameError = document.querySelector('.lastError')
 
 
-first.addEventListener("input", function () {
-  if (first.validity.valid) {
-    firstErrorMessage.innerHTML = "";
-    /* firstErrorMessage.className = "FirstErrorMessage"; */
+// Validations
+
+function nameValid(firstOrLast){
+  return firstOrLast.trim().length >= 2;
+}
+
+// inputs event
+
+firstName.addEventListener('input', function(event){
+
+  if(nameValid(event.target.value)){
+    firstNameError.innerHTML = "";
   }
-});
 
-last.addEventListener("input", function (event) {
-  if (last.validity.valid) {
-    lastErrorMessage.innerHTML = "";
-    /* lastErrorMessage.className = "lastErrorMessage"; */
+})
+
+lastName.addEventListener('input', function(event){
+
+  if(nameValid(event.target.value)){
+    lastNameError.innerHTML = "";
   }
-});
+  
+})
 
-email.addEventListener("input", function (event) {
-  if (email.validity.valid) {
-    emailErrorMessage.innerHTML = "";
-    /* emailErrorMessage.className = "emailErrorMessage"; */
+// Inputs Validation Form
+
+function firstNameValidation(){
+  
+  const firstNameIsValid = nameValid(firstName.value);
+ 
+  if (!firstNameIsValid){
+    firstNameError.innerHTML = "2 caractères minimum";
   }
-});
 
-date.addEventListener("input", function (event) {
-  if (date.validity.valid) {
-    dateErrorMessage.innerHTML = "";
-    /* emailErrorMessage.className = "emailErrorMessage"; */
+  return firstNameIsValid;
+
+}
+
+function lastNameValidation(){
+  
+  const lastNameIsValid = nameValid(lastName.value);
+  console.log(lastNameIsValid);
+  alert("stop");
+ 
+  if (!lastNameIsValid){
+    lastNameError.innerHTML = "2 caractères minimum";
   }
-});
 
-form.addEventListener("submit", function (event) {
-  if (!first.validity.valid) {
-    firstErrorMessage.innerHTML = "first Message Error";
-    /* firstErrorMessage.className = "firstErrorMessage active"; */
+  return lastNameIsValid;
+}
+
+function emailValdiation(){
+  const email = document.getElementById('email').value;
+  const emailError = document.querySelector('.emailError');
+  
+}
+
+function birthdateValidation(){
+  const Birthdate = document.getElementById('birthdate').value;
+  const BirthdateError = document.querySelector('.birthdateError');
+
+}
+
+function tournamentCountValidation(){
+  const tournamentCount = document.getElementById('quantity').value;
+  const tournamentCountError = document.querySelector('.quantityError');
+}
+
+
+function tournamentLocationValidation(){
+
+}
+
+// Voir ici la validation des checkbox
+
+// Form event
+
+form.addEventListener('submit', function(event){
+  
+  if (!firstNameValidation() || !lastNameValidation()){
     event.preventDefault();
-    alert("FirstName non valide");
-  }
-
-  if (!last.validity.valid) {
-    lastErrorMessage.innerHTML = "first Message Error";
-    /* lastErrorMessage.className = "LastErrorMessage active"; */
-    event.preventDefault();
-    alert("LastName non valide");
-  }
-
-  if (!email.validity.valid) {
-    emailErrorMessage.innerHTML = "email Message Error";
-    /* emailErrorMessage.className = "emailErrorMessage active"; */
-    event.preventDefault();
-    alert("email non valide");
-  }
-    console.log(date.validity.valid);
-    if (!date.validity.valid) {
-    dateErrorMessage.innerHTML = "Birthdate Message Error";
-    /* emailErrorMessage.className = "emailErrorMessage active"; */
-    event.preventDefault();
-    alert("date non valide");
   }
 
 });
