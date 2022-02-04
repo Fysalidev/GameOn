@@ -10,13 +10,13 @@ const firstNameError = document.querySelector('.firstError');
 const lastNameError = document.querySelector('.lastError')
 
 
-// Validations
+// Inputs Tests
 
 function nameValid(firstOrLast){
   return firstOrLast.trim().length >= 2;
 }
 
-// inputs event
+// inputs event => Reset des messages d'erreur
 
 firstName.addEventListener('input', function(event){
 
@@ -34,63 +34,55 @@ lastName.addEventListener('input', function(event){
   
 })
 
-// Inputs Validation Form
+// Validation du formulaire & message d'erreur
 
-function firstNameValidation(){
+function formIsValid() {
+
+  let formIsValid = false;
   
   const firstNameIsValid = nameValid(firstName.value);
- 
+  
   if (!firstNameIsValid){
     firstNameError.innerHTML = "2 caractères minimum";
   }
 
-  return firstNameIsValid;
-
-}
-
-function lastNameValidation(){
-  
   const lastNameIsValid = nameValid(lastName.value);
-  console.log(lastNameIsValid);
-  alert("stop");
- 
+  
   if (!lastNameIsValid){
     lastNameError.innerHTML = "2 caractères minimum";
   }
 
-  return lastNameIsValid;
-}
-
-function emailValdiation(){
+  // Validation des email
   const email = document.getElementById('email').value;
   const emailError = document.querySelector('.emailError');
-  
-}
 
-function birthdateValidation(){
+  // Validation date de naissance
   const Birthdate = document.getElementById('birthdate').value;
   const BirthdateError = document.querySelector('.birthdateError');
 
-}
-
-function tournamentCountValidation(){
+  // Validation du nombre de tournois
   const tournamentCount = document.getElementById('quantity').value;
   const tournamentCountError = document.querySelector('.quantityError');
+
+  // validation d'une ville
+
+
+  // Validation des checkbox...
+
+  if (firstNameIsValid && lastNameIsValid) {
+    formIsValid = true;
+  }
+
+  return formIsValid;
+
 }
-
-
-function tournamentLocationValidation(){
-
-}
-
-// Voir ici la validation des checkbox
-
-// Form event
 
 form.addEventListener('submit', function(event){
   
-  if (!firstNameValidation() || !lastNameValidation()){
+  if (!formIsValid()){
     event.preventDefault();
   }
+
+  // Prevoir d'insérer la pages ici...
 
 });
