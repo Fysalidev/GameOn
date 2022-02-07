@@ -11,9 +11,13 @@ const lastNameError = document.querySelector('.lastError')
 
 
 // Inputs Tests
-
-function nameValid(firstOrLast){
-  return firstOrLast.trim().length >= 2;
+/**
+ * 
+ * @param {string} firstOrLastName 
+ * @returns {boolean}
+ */
+function nameValid(firstOrLastName){
+  return firstOrLastName.trim().length >= 2;
 }
 
 // inputs event => Reset des messages d'erreur
