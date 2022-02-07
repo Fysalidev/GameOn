@@ -11,50 +11,48 @@ const lastNameError = document.querySelector('.lastError')
 
 
 // Inputs Tests
+
 /**
- * 
+ * Description de la fonction
  * @param {string} firstOrLastName 
  * @returns {boolean}
  */
+
 function nameValid(firstOrLastName){
   return firstOrLastName.trim().length >= 2;
+
 }
 
-// inputs event => Reset des messages d'erreur
-
-firstName.addEventListener('input', function(event){
-
-  if(nameValid(event.target.value)){
-    firstNameError.innerHTML = "";
-  }
-
-})
-
-lastName.addEventListener('input', function(event){
-
-  if(nameValid(event.target.value)){
-    lastNameError.innerHTML = "";
-  }
+function firstNameIsValid(){
+  const firstNameIsValid = nameValid(firstName.value);
   
-})
+  if (!firstNameIsValid){
+    firstNameError.innerHTML = "2 caractères minimum";
+  } 
+
+  return firstNameIsValid;
+
+}
+
+function lastNameIsValid(){
+  const lastNameIsValid = nameValid(lastName.value);
+
+  if (!lastNameIsValid){
+    lastNameError.innerHTML = "2 caractères minimum";
+  }
+
+  return lastNameIsValid;
+}
+
+
 
 // Validation du formulaire & message d'erreur
 
 function formIsValid() {
 
   let formIsValid = false;
-  
-  const firstNameIsValid = nameValid(firstName.value);
-  
-  if (!firstNameIsValid){
-    firstNameError.innerHTML = "2 caractères minimum";
-  }
-
-  const lastNameIsValid = nameValid(lastName.value);
-  
-  if (!lastNameIsValid){
-    lastNameError.innerHTML = "2 caractères minimum";
-  }
+  const first = firstNameIsValid();
+  const name = lastNameIsValid();
 
   // Validation des email
   const email = document.getElementById('email').value;
@@ -73,8 +71,9 @@ function formIsValid() {
 
   // Validation des checkbox...
 
-  if (firstNameIsValid && lastNameIsValid) {
+  if (first && name) {
     formIsValid = true;
+
   }
 
   return formIsValid;
@@ -90,3 +89,21 @@ form.addEventListener('submit', function(event){
   // Prevoir d'insérer la pages ici...
 
 });
+
+// inputs event => Reset des messages d'erreur
+
+firstName.addEventListener('input', function(event){
+
+  if(nameValid(event.target.value)){
+    firstNameError.innerHTML = "";
+  }
+
+})
+
+lastName.addEventListener('input', function(event){
+
+  if(nameValid(event.target.value)){
+    lastNameError.innerHTML = "";
+  }
+  
+})
