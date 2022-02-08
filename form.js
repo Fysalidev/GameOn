@@ -1,109 +1,56 @@
 const form = document.getElementsByTagName("form")[0];
 
-// Inputs Elements
-
-const firstName = document.getElementById('first');
+// DOM Elements
 const lastName = document.getElementById('last');
-
-// Error Message Elements
-const firstNameError = document.querySelector('.firstError');
-const lastNameError = document.querySelector('.lastError')
-
-
-// Inputs Tests
+const email = document.getElementById('email');
+const Birthdate = document.getElementById('birthdate');
+const tournamentCount = document.getElementById('quantity');
+const firstName = document.getElementById('first');
 
 /**
- * Description de la fonction
- * @param {string} firstOrLastName 
- * @returns {boolean}
+ * 
+ * @param {Element} input 
+ * @param {string} err 
  */
-
-function nameValid(firstOrLastName){
-  return firstOrLastName.trim().length >= 2;
-
-}
-
-function firstNameIsValid(){
-  const firstNameIsValid = nameValid(firstName.value);
+function alertInputOn (input, err ) {
   
-  if (!firstNameIsValid){
-    firstNameError.innerHTML = "2 caractères minimum";
-  } 
-
-  return firstNameIsValid;
-
-}
-
-function lastNameIsValid(){
-  const lastNameIsValid = nameValid(lastName.value);
-
-  if (!lastNameIsValid){
-    lastNameError.innerHTML = "2 caractères minimum";
-  }
-
-  return lastNameIsValid;
-}
-
-
-
-// Validation du formulaire & message d'erreur
-
-function formIsValid() {
-
-  let formIsValid = false;
-  const first = firstNameIsValid();
-  const name = lastNameIsValid();
-
-  // Validation des email
-  const email = document.getElementById('email').value;
-  const emailError = document.querySelector('.emailError');
-
-  // Validation date de naissance
-  const Birthdate = document.getElementById('birthdate').value;
-  const BirthdateError = document.querySelector('.birthdateError');
-
-  // Validation du nombre de tournois
-  const tournamentCount = document.getElementById('quantity').value;
-  const tournamentCountError = document.querySelector('.quantityError');
-
-  // validation d'une ville
-
-
-  // Validation des checkbox...
-
-  if (first && name) {
-    formIsValid = true;
-
-  }
-
-  return formIsValid;
-
-}
-
-form.addEventListener('submit', function(event){
+  input.parentElement.setAttribute("data-error-visible", "true");
+  input.parentElement.setAttribute("data-error", err);
   
-  if (!formIsValid()){
-    event.preventDefault();
+}
+
+/**
+ * Validation du formulaire soumis
+ * @param {event} e 
+ */
+function formValid(e) {
+  
+  alert("C'est parti");
+  let isValidFirstName = firstName.value.trim().length >= 2;
+  if (!isValidFirstName) {
+    alertInputOn(firstName, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.");
   }
 
-  // Prevoir d'insérer la pages ici...
+  let isValdiLastName = lastName.value.trim().length >= 2;
+  if (!isValdiLastName) {
+    alertInputOn(lastName, "Veuillez entrer 2 caractères ou plus pour le champ du nom.");
+  
+  }
+  
+  let isValidEmail = /^e[0-9]{3,}$/.test(email.value);
+  if (!isValidEmail) {
+    alertInputOn(email, "Adresse email invalide");
+  
+  }
+  
+  if (isValidFirstName && isValdiLastName && isValidEmail){
+    alert("Afficher le message de confirmation")
+  } else {
+    e.preventDefault();
+  }
 
+}
+
+form.addEventListener("submit", function (event){
+  formValid(event);
 });
-
-// inputs event => Reset des messages d'erreur
-
-firstName.addEventListener('input', function(event){
-
-  if(nameValid(event.target.value)){
-    firstNameError.innerHTML = "";
-  }
-
-})
-
-lastName.addEventListener('input', function(event){
-
-  if(nameValid(event.target.value)){
-    lastNameError.innerHTML = "";
-  }
-  
-})
