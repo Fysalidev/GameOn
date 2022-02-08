@@ -44,46 +44,52 @@ function formValid (event) {
   const firstNameIsValid = isValidName(firstName);
   const lastNameIsValid = isValidName(lastName);
   const emailIsValid = isValidEmail(email);
-  
-  if (firstNameIsValid && lastNameIsValid && emailIsValid){
-    
-    alert("Formulaire envoyé");
-    
-  } else {
-    
-    if (!firstNameIsValid){
-      firstName.parentElement.setAttribute("data-error-visible", "true");
-      firstName.parentElement.setAttribute("data-error", "Champ invalide")
-      firstName.addEventListener('input', function (event) {
-        if (isValidName(event.target)) {
-          event.target.parentElement.setAttribute("data-error-visible", "false");
-        } 
-      })
-    }
-    
-    if (!lastNameIsValid){
-      lastName.parentElement.setAttribute("data-error-visible", "true");
-      lastName.parentElement.setAttribute("data-error", "Champ invalide");
-      lastName.addEventListener('input', function(event){
-        if (isValidName(event.target)){
-          event.target.parentElement.setAttribute("data-error-visible", "false");
-        } 
-      })
-    }
-    
-    if (!emailIsValid){
-      email.parentElement.setAttribute("data-error-visible", "true");
-      email.parentElement.setAttribute("data-error", "Champ invalide");
-      email.addEventListener('input', function(event){
-        if (isValidEmail(event.target)){
-          event.target.parentElement.setAttribute("data-error-visible", "false");
-        } 
-      })
-    }
 
-    event.preventDefault();
-        
+  if ( (typeof firstNameIsValid !== 'undefined') && (typeof lastNameIsValid !== 'undefined') && (typeof emailIsValid !== 'undefined')){
+
+    if (firstNameIsValid && lastNameIsValid && emailIsValid){
+      
+      alert("Formulaire envoyé");
+      
+    } else {
+      
+      if (!firstNameIsValid){
+        firstName.parentElement.setAttribute("data-error-visible", "true");
+        firstName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du Prénom")
+        firstName.addEventListener('input', function (event) {
+          if (isValidName(event.target)) {
+            event.target.parentElement.setAttribute("data-error-visible", "false");
+          } 
+        })
+      }
+      
+      if (!lastNameIsValid){
+        lastName.parentElement.setAttribute("data-error-visible", "true");
+        lastName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du Nom");
+        lastName.addEventListener('input', function(event){
+          if (isValidName(event.target)){
+            event.target.parentElement.setAttribute("data-error-visible", "false");
+          } 
+        })
+      }
+      
+      if (!emailIsValid){
+        email.parentElement.setAttribute("data-error-visible", "true");
+        email.parentElement.setAttribute("data-error", "Veuillez vérifier votre email");
+        email.addEventListener('input', function(event){
+          if (isValidEmail(event.target)){
+            event.target.parentElement.setAttribute("data-error-visible", "false");
+          } 
+        })
+      }
+
+      event.preventDefault();
+          
+    }
+  } else {
+    alert("Problème sur un variable d'entrée")
   }
+  
 }
 
 
