@@ -1,83 +1,57 @@
-const form = document.getElementsByTagName("form")[0];
-
 // DOM Element
+const form = document.getElementsByTagName("form")[0];
 const firstName = document.getElementById('first');
 const lastName = document.getElementById('last');
 const email = document.getElementById('email');
 const birthdate = document.getElementById('birthdate');
 const tournamentCount = document.getElementById('quantity');
 
+// Event
+
+form.addEventListener('submit', function (event){
+  formValid(event);
+});
+
+// Inputs validation
+
 /**
- * Validation Input firstName & lastName
+ * Input firstName & lastName Validation
  * @param {DOM Element Input} input 
  * @returns {boolean}
  */
-
 function isValidName(input){
   return input.value.trim().length >=2;
 }
 
 /**
- * Validation Input Email
+ * Input Email Validation
  * @param {DOM Element Input} input 
  * @returns {boolean}
  */
-
 function isValidEmail(input){
   return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(input.value);
-
 }
 
-/**
- * Validation input birthdate
- * @param {DOM Element Input} input 
- * @returns {boolean}
- */
-
-function isValidBirthdate(input) {
-  return /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(input.value);
-}
-
-/**
- * Validation input TournamentCount
- * @param {DOM Element Input} input 
- * @returns {boolean}
- */
-
-function isValidTounamentCount(input){
-  return /^(0|[1-9][0-9]?|99)$/.test(input.value);
-}
-
-form.addEventListener('submit', function (event){
-  formValid(event);
-});
+// Form Validation
 
 /**
  * Validation du formulaire
  * @param {Event} event 
  * 
  */
-
 function formValid (event) {
   
-  const isValidFirstName = isValidName(firstName);
-  alert ("first : ".isValidFirstName);
-  const isValdiLastName = isValidName(lastName);
-  alert ("last : ".isValdiLastName);
-  const isValidEmail = isValidEmail(email);
-  alert("email : ".isValidEmail);
-  const isValidBirthdate = isValidBirthdate(birthdate);
-  alert("birthdate : ".isValidBirthdate);
-  const isValidTounamentCount = isValidTounamentCount(tournamentCount);
-  alert("tournemantCount".isValidTounamentCount);
+  const firstNameIsValid = isValidName(firstName);
+  const lastNameIsValid = isValidName(lastName);
+  const emailIsValid = isValidEmail(email);
   
-  if (isValidFirstName && isValdiLastName && isValidEmail && isValidBirthdate && isValidTounamentCount){
+  if (firstNameIsValid && lastNameIsValid && emailIsValid){
     
     alert("Formulaire envoyé");
     
   } else {
     
-    if (!isValidFirstName){
+    if (!firstNameIsValid){
       firstName.parentElement.setAttribute("data-error-visible", "true");
       firstName.parentElement.setAttribute("data-error", "Champ invalide")
       firstName.addEventListener('input', function (event) {
@@ -87,7 +61,7 @@ function formValid (event) {
       })
     }
     
-    if (!isValdiLastName){
+    if (!lastNameIsValid){
       lastName.parentElement.setAttribute("data-error-visible", "true");
       lastName.parentElement.setAttribute("data-error", "Champ invalide");
       lastName.addEventListener('input', function(event){
@@ -97,7 +71,7 @@ function formValid (event) {
       })
     }
     
-    if (!isValidEmail){
+    if (!emailIsValid){
       email.parentElement.setAttribute("data-error-visible", "true");
       email.parentElement.setAttribute("data-error", "Champ invalide");
       email.addEventListener('input', function(event){
@@ -106,27 +80,9 @@ function formValid (event) {
         } 
       })
     }
-    
-    if (!isValidBirthdate){
-      birthdate.parentElement.setAttribute("data-error-visible", "true");
-      birthdate.parentElement.setAttribute("data-error", "Champ invalide");
-      birthdate.addEventListener('input', function(event){
-        if (isValidBirthdate(event.target)){
-          event.target.parentElement.setAttribute("data-error-visible", "false");
-        } 
-      })
-    }
-    
-    if (!isValidTounamentCount){
-      tournamentCount.parentElement.setAttribute("data-error-visible", "true");
-      tournamentCount.parentElement.setAttribute("data-error", "Champ invalide");
-      tournamentCount.addEventListener('input', function(event){
-        if (isValidTounamentCount(event.target)){
-          event.target.parentElement.setAttribute("data-error-visible", "false");
-        } 
-      })
-    }
+
     event.preventDefault();
+        
   }
 }
 
