@@ -32,6 +32,24 @@ function isValidEmail(input){
   return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test(input.value);
 }
 
+/**
+ * Input Birthdate Validation
+ * @param {DOM Element Input} input 
+ * @returns {boolean}
+ */
+function isValidBirthdate(input){
+  return /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(input.value);
+}
+
+/**
+ * Input TournamentCount Validation
+ * @param {DOM Element} input 
+ * @returns {boolean}
+ */
+function isValidTournament(input){
+  return /^[1-9]{0,1}[0-9]$/.test(input.value);
+}
+
 // Form Validation
 
 /**
@@ -44,10 +62,12 @@ function formValid (event) {
   const firstNameIsValid = isValidName(firstName);
   const lastNameIsValid = isValidName(lastName);
   const emailIsValid = isValidEmail(email);
+  const birthdateIsValid = isValidBirthdate(birthdate);
+  const tournamentIsValid = isValidTournament(tournamentCount);
 
-  if ( (typeof firstNameIsValid !== 'undefined') && (typeof lastNameIsValid !== 'undefined') && (typeof emailIsValid !== 'undefined')){
+  if ( (typeof firstNameIsValid !== 'undefined') && (typeof lastNameIsValid !== 'undefined') && (typeof birthdateIsValid !== 'undefined') && (typeof tournamentIsValid !== 'undefined')){
 
-    if (firstNameIsValid && lastNameIsValid && emailIsValid){
+    if (firstNameIsValid && lastNameIsValid && emailIsValid && birthdateIsValid){
       
       alert("Formulaire envoyé");
       
@@ -83,11 +103,31 @@ function formValid (event) {
         })
       }
 
+      if (!birthdateIsValid){
+        birthdate.parentElement.setAttribute("data-error-visible", "true");
+        birthdate.parentElement.setAttribute("data-error", "Vous devez entrer votre date de naissance");
+        birthdate.addEventListener('input', function(event){
+          if (isValidBirthdate(event.target)){
+            event.target.parentElement.setAttribute("data-error-visible", "false");
+          } 
+        })
+      }
+
+      if (!tournamentIsValid){
+        tournamentCount.parentElement.setAttribute("data-error-visible", "true");
+        tournamentCount.parentElement.setAttribute("data-error", "Vous devez indiquer un nombre de tournois");
+        tournamentCount.addEventListener('input', function(event){
+          if (isValidTournament(event.target)){
+            event.target.parentElement.setAttribute("data-error-visible", "false");
+          } 
+        })
+      }
+
       event.preventDefault();
           
     }
   } else {
-    alert("Problème sur un variable d'entrée")
+    alert("Problème sur une variable d'entrée")
   }
   
 }
