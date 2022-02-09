@@ -1,10 +1,13 @@
 // DOM Element
-const form = document.getElementsByTagName("form")[0];
+const form = document.getElementsByTagName('form')[0];
 const firstName = document.getElementById('first');
 const lastName = document.getElementById('last');
 const email = document.getElementById('email');
 const birthdate = document.getElementById('birthdate');
 const tournamentCount = document.getElementById('quantity');
+const citys = document.querySelectorAll('.checkbox-input[name=location]');
+const locationRadio = document.getElementById('location1');
+const terms = document.getElementById('checkbox1');
 
 // Event
 
@@ -50,6 +53,24 @@ function isValidTournament(input){
   return /^[1-9]{0,1}[0-9]$/.test(input.value);
 }
 
+function isValidLocation(inputs){
+  
+  const location = false;
+  
+  for(let i = 0; i < inputs.length; i++){
+    if (citys[i].checked){
+      location = true;
+    }
+  }
+  
+  return location;
+}
+
+function isValidItem(input){
+  return (input.checked) ? true : false;
+}
+
+
 // Form Validation
 
 /**
@@ -64,10 +85,12 @@ function formValid (event) {
   const emailIsValid = isValidEmail(email);
   const birthdateIsValid = isValidBirthdate(birthdate);
   const tournamentIsValid = isValidTournament(tournamentCount);
+  const locationIsValid = isValidLocation(citys);
+  const termsIsValid = isValidItem(terms);
+  console.log(termsIsValid);
+  alert('stop');
 
-  if ( (typeof firstNameIsValid !== 'undefined') && (typeof lastNameIsValid !== 'undefined') && (typeof birthdateIsValid !== 'undefined') && (typeof tournamentIsValid !== 'undefined')){
-
-    if (firstNameIsValid && lastNameIsValid && emailIsValid && birthdateIsValid){
+    if (firstNameIsValid && lastNameIsValid && emailIsValid && birthdateIsValid && tournamentIsValid && locationIsValid && termsIsValid) {
       
       alert("Formulaire envoyé");
       
@@ -75,7 +98,7 @@ function formValid (event) {
       
       if (!firstNameIsValid){
         firstName.parentElement.setAttribute("data-error-visible", "true");
-        firstName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du Prénom")
+        firstName.parentElement.setAttribute("data-error", "Veuillez entrer 2 caractères ou plus pour le champ du Prénom");
         firstName.addEventListener('input', function (event) {
           if (isValidName(event.target)) {
             event.target.parentElement.setAttribute("data-error-visible", "false");
@@ -123,13 +146,27 @@ function formValid (event) {
         })
       }
 
+      if (!tournamentIsValid){
+        locationRadio.parentElement.setAttribute("data-error-visible", "true");
+        locationRadio.parentElement.setAttribute("data-error", "Vous devez choisir un tournoi");
+      }
+
+      if (!termsIsValid){
+        if (!tournamentIsValid){
+        terms.parentElement.setAttribute("data-error-visible", "true");
+        terms.parentElement.setAttribute("data-error", "Vous devez accepter les conditions d'utilisation");
+        terms.addEventListener('input', function(event){
+          if (isValidTournament(event.target)){
+            event.target.parentElement.setAttribute("data-error-visible", "false");
+          } 
+        })
+      }
+      }
+
       event.preventDefault();
           
     }
-  } else {
-    alert("Problème sur une variable d'entrée")
-  }
-  
+    
 }
 
 
