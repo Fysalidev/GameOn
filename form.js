@@ -91,6 +91,7 @@ function formValid(event) {
   console.log(locationIsValid);
   const termsIsValid = isValidItem(terms);
   console.log(termsIsValid);
+  alert("Vérifier les entrées");
 
   if (
     firstNameIsValid &&
@@ -102,6 +103,9 @@ function formValid(event) {
     termsIsValid
   ) {
     alert("Formulaire ok");
+    
+    
+
   } else {
     if (!firstNameIsValid) {
       firstName.parentElement.setAttribute("data-error-visible", "true");
@@ -189,8 +193,8 @@ function formValid(event) {
         "data-error",
         "Vous devez choisir un tournoi"
       );
-      for (let i = 0; i < citys.length; i++){
-        citys[i].addEventListener("input", function(event){
+      for (let i = 0; i < citys.length; i++) {
+        citys[i].addEventListener("input", function (event) {
           if (isValidItem(event.target)) {
             event.target.parentElement.setAttribute(
               "data-error-visible",
@@ -199,7 +203,6 @@ function formValid(event) {
           }
         });
       }
-
     }
 
     if (!termsIsValid) {
