@@ -29,6 +29,7 @@ function launchModal() {
 // close modal form
 function closeModal(){
   modalbg.style.display = "none";
+  form.reset();
 
 }
 

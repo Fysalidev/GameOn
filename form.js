@@ -103,9 +103,31 @@ function formValid(event) {
     termsIsValid
   ) {
     alert("Formulaire ok");
-    
-    
 
+    event.preventDefault();
+
+    form.hidden = true;
+    
+    let modalBody = document.querySelector(".modal-body");
+    let newDiv = document.createElement("div");
+    let p = document.createElement("p");
+    let btn = document.createElement("button");
+
+    newDiv.classList.add("congratulation");
+    p.innerHTML = "Message de congratulation";
+    
+    btn.innerHTML = "Fermer";
+    btn.classList.add("btn-submit");
+    btn.addEventListener("click", () => {
+      form.hidden = false;
+      document.querySelector(".congratulation").remove();
+      closeModal();
+    });
+
+    newDiv.appendChild(p);
+    newDiv.appendChild(btn);
+    modalBody.appendChild(newDiv);
+    
   } else {
     if (!firstNameIsValid) {
       firstName.parentElement.setAttribute("data-error-visible", "true");
@@ -177,6 +199,7 @@ function formValid(event) {
         "data-error",
         "Vous devez indiquer un nombre de tournois"
       );
+
       tournamentCount.addEventListener("input", function (event) {
         if (isValidTournament(event.target)) {
           event.target.parentElement.setAttribute(
@@ -225,5 +248,4 @@ function formValid(event) {
 
     event.preventDefault();
   }
-  
 }
