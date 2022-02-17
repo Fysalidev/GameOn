@@ -26,12 +26,21 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// reset modal display
+function resetModalDisplay() {
+  if(document.querySelector(".congratulation") !== null) {
+    form.hidden = false;
+    document.querySelector(".congratulation").remove();
+  }
+}
+
 // close modal form
 function closeModal(){
   modalbg.style.display = "none";
   form.reset();
-
+  resetModalDisplay();
 }
+
 
 
 

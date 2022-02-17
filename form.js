@@ -69,6 +69,8 @@ function isValidItem(input) {
   return isValid;
 }
 
+
+
 // Form Validation
 
 /**
@@ -102,7 +104,6 @@ function formValid(event) {
     locationIsValid &&
     termsIsValid
   ) {
-    alert("Formulaire ok");
 
     event.preventDefault();
 
@@ -119,8 +120,7 @@ function formValid(event) {
     btn.innerHTML = "Fermer";
     btn.classList.add("btn-submit");
     btn.addEventListener("click", () => {
-      form.hidden = false;
-      document.querySelector(".congratulation").remove();
+      resetModalDisplay();
       closeModal();
     });
 
