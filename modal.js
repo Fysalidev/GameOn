@@ -24,6 +24,11 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// Reset Modal Errors display
+function resetErrorsDisplay(){
+  formData.forEach((elt) => elt.setAttribute("data-error-visible", "false"));
+}
+
 // reset modal display
 function resetModalDisplay() {
   if(document.querySelector(".congratulation") !== null) {
@@ -36,6 +41,7 @@ function resetModalDisplay() {
 function closeModal(){
   form.reset();
   resetModalDisplay();
+  resetErrorsDisplay();
   modalbg.style.display = "none";
 }
 
