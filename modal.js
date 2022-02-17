@@ -11,8 +11,6 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const modalBtnClose = document.querySelectorAll(".close");
-
-// Pourquoi ???
 const formData = document.querySelectorAll(".formData");
 
 // launch modal event
@@ -36,9 +34,9 @@ function resetModalDisplay() {
 
 // close modal form
 function closeModal(){
-  modalbg.style.display = "none";
   form.reset();
   resetModalDisplay();
+  modalbg.style.display = "none";
 }
 
 
