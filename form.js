@@ -114,7 +114,7 @@ function formValid(event) {
     let btn = document.createElement("button");
 
     newDiv.classList.add("congratulation");
-    p.innerHTML = "Message de congratulation";
+    p.innerHTML = "Merci pour votre inscription";
     
     btn.innerHTML = "Fermer";
     btn.classList.add("btn-submit");
