@@ -11,14 +11,14 @@
 /* Landing Page */
 
 body {
-  /* margin: 0 40px; */
   display: flex;
   flex-direction: column;
-  /* background-image: url("background.png"); */
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1440px;
   margin: 0 auto;
+  /* margin: 0 40px; */
+  /* background-image: url("background.png"); */
 }
 
 p {
@@ -76,11 +76,11 @@ main {
   font-weight: bolder;
   color: black;
   padding-top: 0.5vw;
-  /* padding-left: 2vw;
-  padding-right: 2vw; */
   margin: 1px 0px 15px 100px;
   border-radius: 2rem;
   text-align: justify;
+  /* padding-left: 2vw;
+  padding-right: 2vw; */
 }
 
 .modal-btn {
@@ -97,6 +97,10 @@ main {
 
 .modal-btn:hover {
   background: #3876ac;
+}
+
+footer {
+  margin: 0 40px;
 }
 
 /* .footer {
@@ -456,12 +460,59 @@ input[data-error]::after {
 
 }
 
+/* Media */
 
-footer {
-  margin: 0 40px;
+@media screen and (max-width: 413px) {
+  body .topnav.responsive .main-navbar {
+    width: 100%;
+    border-radius: 0px;
+  }
+  body .topnav.responsive .main-navbar .menu,
+  body .topnav.responsive .main-navbar .active {
+    width: 100%;
+    border-radius: 0;
+  }
 }
 
-/* Media */
+@media screen and (max-width: 540px) {
+  body {
+    margin: 0 40px;
+  }
+
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
 
 @media screen and (min-width: 770px) and (max-width: 1050px) {
   body .topnav {
@@ -476,15 +527,9 @@ footer {
   }
 }
 
-@media screen and (min-width: 770px) and (max-width: 800px) {
-  body .topnav {
-    margin: 3.5% 0px;
-  }
-}
-
 @media screen and (max-width: 800px) {
   .topnav {
-    margin: 3.5% 0;
+    margin: 3.5% 0px;
   }
   body {
     margin: 0 40px;
@@ -541,59 +586,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {
-    position: relative;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-@media screen and (max-width: 540px) {
-  body {
-    margin: 0 40px;
-  }
-
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-
-}
-
-@media screen and (max-width: 413px) {
-  body .topnav.responsive .main-navbar {
-    width: 100%;
-    border-radius: 0px;
-  }
-  body .topnav.responsive .main-navbar .menu,
-  body .topnav.responsive .main-navbar .active {
-    width: 100%;
-    border-radius: 0;
-  }
-}
+/* Keyframes */
 
 @keyframes modalopen {
   from {
