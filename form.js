@@ -78,7 +78,7 @@ function isValidLocation(inputs) {
 /**
  * Input Item Validation
  * @param {DOM Element Input} input 
- * @returns 
+ * @returns {boolean}
  */
 function isValidItem(input) {
   const isValid = input.checked ? true : false;
