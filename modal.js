@@ -25,27 +25,22 @@ function launchModal() {
 }
 
 // Reset Modal Errors display
-function resetErrorsDisplay(){
+function resetErrorsDisplay() {
   formData.forEach((elt) => elt.setAttribute("data-error-visible", "false"));
 }
 
 // reset modal display
 function resetModalDisplay() {
-  if(document.querySelector(".congratulation") !== null) {
+  if (document.querySelector(".congratulation") !== null) {
     form.hidden = false;
     document.querySelector(".congratulation").remove();
   }
 }
 
 // close modal form
-function closeModal(){
+function closeModal() {
   form.reset();
   resetModalDisplay();
   resetErrorsDisplay();
   modalbg.style.display = "none";
 }
-
-
-
-
-

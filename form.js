@@ -77,7 +77,7 @@ function isValidLocation(inputs) {
 
 /**
  * Input Item Validation
- * @param {DOM Element Input} input 
+ * @param {DOM Element Input} input
  * @returns {boolean}
  */
 function isValidItem(input) {
