@@ -23,7 +23,12 @@ form.addEventListener("submit", function (event) {
  * @returns {boolean}
  */
 function isValidName(input) {
-  return input.value.trim().length >= 2;
+  const nameLength = input.value.trim().length >= 2;
+  const nameRegex =
+    /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ'`'\-]+$/.test(
+      input.value
+    );
+  return (isValid = nameLength && nameRegex ? true : false);
 }
 
 /**
@@ -53,6 +58,11 @@ function isValidTournament(input) {
   return /^[1-9]{0,1}[0-9]$/.test(input.value);
 }
 
+/**
+ * Input Location Validation
+ * @param {array} inputs
+ * @returns {boolean}
+ */
 function isValidLocation(inputs) {
   let isValid = false;
 
@@ -61,15 +71,19 @@ function isValidLocation(inputs) {
       isValid = true;
     }
   }
+
   return isValid;
 }
 
+/**
+ * Input Item Validation
+ * @param {DOM Element Input} input 
+ * @returns 
+ */
 function isValidItem(input) {
   const isValid = input.checked ? true : false;
   return isValid;
 }
-
-
 
 // Form Validation
 
@@ -80,20 +94,12 @@ function isValidItem(input) {
  */
 function formValid(event) {
   const firstNameIsValid = isValidName(firstName);
-  console.log(firstNameIsValid);
   const lastNameIsValid = isValidName(lastName);
-  console.log(lastNameIsValid);
   const emailIsValid = isValidEmail(email);
-  console.log(emailIsValid);
   const birthdateIsValid = isValidBirthdate(birthdate);
-  console.log(birthdateIsValid);
   const tournamentIsValid = isValidTournament(tournamentCount);
-  console.log(tournamentIsValid);
   const locationIsValid = isValidLocation(citys);
-  console.log(locationIsValid);
   const termsIsValid = isValidItem(terms);
-  console.log(termsIsValid);
-  alert("Vérifier les entrées");
 
   if (
     firstNameIsValid &&
@@ -104,11 +110,10 @@ function formValid(event) {
     locationIsValid &&
     termsIsValid
   ) {
-
     event.preventDefault();
 
     form.hidden = true;
-    
+
     let modalBody = document.querySelector(".modal-body");
     let newDiv = document.createElement("div");
     let p = document.createElement("p");
@@ -116,7 +121,7 @@ function formValid(event) {
 
     newDiv.classList.add("congratulation");
     p.innerHTML = "Merci pour votre inscription";
-    
+
     btn.innerHTML = "Fermer";
     btn.classList.add("btn-submit");
     btn.addEventListener("click", () => {
@@ -127,7 +132,6 @@ function formValid(event) {
     newDiv.appendChild(p);
     newDiv.appendChild(btn);
     modalBody.appendChild(newDiv);
-    
   } else {
     if (!firstNameIsValid) {
       firstName.parentElement.setAttribute("data-error-visible", "true");
