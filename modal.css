@@ -422,8 +422,8 @@ input[data-error]::after {
   padding: 0;
 }
 .btn-signup {
-  width: 154px;
-  height: 54px;
+  /* width: 154px; */
+  /* height: 54px; */
   outline: none;
   text-transform: capitalize;
   font-size: 1.3rem;
